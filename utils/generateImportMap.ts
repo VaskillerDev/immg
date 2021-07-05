@@ -29,7 +29,8 @@ export default function generateImportMap(args : GenerateImportMapsArgs) : void 
         Print.openImports(fd);
         collectDepsFromPackageJson(baseUrlPath, map);
         depsToNodeModules(baseUrlPath, map, staticArgs);
-        Print.closeImports(fd);
+        const newDescriptor = Print.removeLastCommaAndGetDescriptor(staticArgs.fileDescriptor, baseUrlPath);
+        Print.closeImports(newDescriptor);
     } catch (e) {
         console.error(e)
     }

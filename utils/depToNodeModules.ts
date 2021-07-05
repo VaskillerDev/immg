@@ -8,7 +8,7 @@ import {StaticArgs} from "../types/StaticArgs.js";
 import {Json} from "../types/Json.js";
 
 /**
- * @param {fileDescriptor : Number, baseUrlPath : String} staticArgs
+ *  @param {fileDescriptor : Number, baseUrlPath : String} staticArgs
  *  @param {String} dep
  *  @param {PathLike | String} pathToPackageJson
  */
@@ -26,9 +26,7 @@ export default function depToNodeModules(pathToPackageJson: string, dep: string,
     const pathToDepPosixLike = pathToDepWithMain.split(sep).join(posix.sep)
     // console.log("appendFileSync", `"${dep}" : "${pathToDepPosixLike}",\n`)
     appendFileSync(fileDescriptor, `"${dep}" : ".${pathToDepPosixLike}",\n`)
-
     
-
     const mapFromDeps : Deps = new Map();
     collectDepsFromPackageJson(fullPathToPackageJson, mapFromDeps)
     depsToNodeModules(pathDepToPackageJson, mapFromDeps, staticArgs);
