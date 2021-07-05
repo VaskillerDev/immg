@@ -1,5 +1,5 @@
 ﻿import {readFileSync} from "fs";
-type Json = { [key: string]: Json | string }
+import {Json} from "../types/Json.js";
 
 /** Collect dependencies from specified package.json
  *  @param {Map<String,String>} map

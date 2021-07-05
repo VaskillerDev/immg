@@ -20,3 +20,5 @@ const args : GenerateImportMapsArgs = {
 }
 
 generateImportMap(args);
+
+export default { generateImportMap }

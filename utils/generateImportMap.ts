@@ -7,6 +7,11 @@ import depsToNodeModules from "./depsToNodeModules.js";
 import tryCreateImportMapFile from "./tryCreateImportMapFile.js";
 import Print from "../types/Print.js";
 
+/**
+ *  Generate import map for dependencies
+ *  See: {@link https://github.com/WICG/import-maps Import maps}
+ * @param args
+ */
 export default function generateImportMap(args : GenerateImportMapsArgs) : void {
 
     const {baseUrlPath, forceMode} = args;
