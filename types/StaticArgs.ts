@@ -1,1 +1,1 @@
-﻿export type StaticArgs = { fileDescriptor : number, baseUrlPath : string}
+﻿export type StaticArgs = { fileDescriptor: number; baseUrlPath: string }

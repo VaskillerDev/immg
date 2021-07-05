@@ -1,4 +1,4 @@
 ﻿export default interface GenerateImportMapsArgs {
-    baseUrlPath: string,
-    forceMode: boolean
+  baseUrlPath: string
+  forceMode: boolean
 }

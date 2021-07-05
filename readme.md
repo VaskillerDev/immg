@@ -1,13 +1,15 @@
 ﻿Implementation [import-maps](https://github.com/WICG/import-maps) generator
 
-## Usage: 
+## Usage:
+
 ```
 npx tsc
 node dist/index.js './my-npm-project/package.json'
 ```
 
 ## Todo
-- [X] Basic generator import path
-- [X] Specifier remapping
+
+- [x] Basic generator import path
+- [x] Specifier remapping
 - [ ] Scoping support
 - [ ] Dynamic import map API
