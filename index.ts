@@ -1,5 +1,5 @@
-﻿import generateImportMap from './utils/generateImportMap.js'
-import GenerateImportMapsArgs from './types/GenerateImportMapsArgs.js'
+﻿import generateImportMap from './src/utils/generateImportMap.js'
+import GenerateImportMapsArgs from './src/types/GenerateImportMapsArgs.js'
 
 /**
  * Usage: node index.js './typedoc/package.json'
