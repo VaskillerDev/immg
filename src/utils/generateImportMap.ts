@@ -1,11 +1,13 @@
 ﻿import { openSync } from 'fs'
-import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
-import { Deps } from '../types/Deps'
-import { StaticArgs } from '../types/StaticArgs'
-import collectDepsFromPackageJson from './collectDepsFromPackageJson.js'
+
 import depsToNodeModules from './depsToNodeModules.js'
 import tryCreateImportMapFile from './tryCreateImportMapFile.js'
+import collectDepsFromPackageJson from './collectDepsFromPackageJson.js'
+
 import Print from '../types/Print.js'
+import { Deps } from '../types/Deps'
+import { StaticArgs } from '../types/StaticArgs'
+import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
 
 /**
  *  Generate import map for dependencies

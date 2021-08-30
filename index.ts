@@ -1,5 +1,4 @@
-﻿import generateImportMap from './src/utils/generateImportMap.js'
-import GenerateImportMapsArgs from './src/types/GenerateImportMapsArgs.js'
+﻿import {PackageNode} from "./src/types/PackageNode.js";
 
 /**
  * Usage: node index.js './typedoc/package.json'
@@ -15,6 +14,7 @@ if (baseUrlPathNotFound)
 
 const forceModeArg: boolean = userArgs[1] === 'true' || false
 
+/*
 const args: GenerateImportMapsArgs = {
   baseUrlPath: baseUrlPathArg,
   forceMode: forceModeArg,
@@ -23,3 +23,7 @@ const args: GenerateImportMapsArgs = {
 generateImportMap(args)
 
 export default { generateImportMap }
+*/
+
+const node = new PackageNode(baseUrlPathArg);
+2+2;
