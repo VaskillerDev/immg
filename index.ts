@@ -26,4 +26,3 @@ export default { generateImportMap }
 */
 
 const node = new PackageNode(baseUrlPathArg);
-2+2;
