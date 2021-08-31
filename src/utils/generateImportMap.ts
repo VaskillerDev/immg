@@ -1,13 +1,12 @@
 ﻿import { openSync } from 'fs'
 
-import depsToNodeModules from './depsToNodeModules.js'
 import tryCreateImportMapFile from './tryCreateImportMapFile.js'
-import collectDepsFromPackageJson from './collectDepsFromPackageJson.js'
 
 import Print from '../types/Print.js'
-import { Deps } from '../types/Deps'
 import { StaticArgs } from '../types/StaticArgs'
 import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
+import {PackageNode} from "../types/PackageNode.js";
+import path from "path";
 
 /**
  *  Generate import map for dependencies
@@ -16,8 +15,7 @@ import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
  */
 export default function generateImportMap(args: GenerateImportMapsArgs): void {
   const { baseUrlPath, forceMode } = args
-
-  const map: Deps = new Map()
+  
   const pathToImportMapFile = tryCreateImportMapFile(baseUrlPath, forceMode)
   const fd = openSync(pathToImportMapFile, 'a+') // file descriptor
 
@@ -25,12 +23,32 @@ export default function generateImportMap(args: GenerateImportMapsArgs): void {
     fileDescriptor: fd,
     baseUrlPath: baseUrlPath,
   }
-
+  
+  const entryNode = new PackageNode(baseUrlPath);
+  const packageSet = new Set<string>();
+  
   try {
     Print.openImports(fd)
-    /**
-     * TODO: generate import maps
-     */
+    
+    entryNode.foreachNode(info => {
+      const {name, version, pathToPackageJson, main} = info;
+      if (packageSet.has(name)) return;
+      const pathToPackageJsonDirs = pathToPackageJson.split(path.sep);
+      
+      const nodeModulesIndex = pathToPackageJsonDirs.findIndex((dir)=> dir === 'node_modules');
+      const nodeModulesFound = nodeModulesIndex !== -1;
+      if (!nodeModulesFound) return;
+      
+      const sliceDir = pathToPackageJsonDirs.slice(nodeModulesIndex, pathToPackageJsonDirs.length - 1);
+      const mainRes = main.split('/').slice(0,-1).join(path.sep);
+      let relPath = path.join(...sliceDir, mainRes);
+      relPath = '.\\' + relPath;
+      relPath = relPath.split(path.sep).join(path.posix.sep);
+      
+      packageSet.add(name);
+      Print.to(fd, `"${name}" : "${relPath}",\n`);
+    });
+    
     const newDescriptor = Print.removeLastCommaAndGetDescriptor(
       staticArgs.fileDescriptor,
       baseUrlPath
