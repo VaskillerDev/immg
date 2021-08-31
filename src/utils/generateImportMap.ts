@@ -28,8 +28,9 @@ export default function generateImportMap(args: GenerateImportMapsArgs): void {
 
   try {
     Print.openImports(fd)
-    collectDepsFromPackageJson(baseUrlPath, map)
-    depsToNodeModules(baseUrlPath, map, staticArgs)
+    /**
+     * TODO: generate import maps
+     */
     const newDescriptor = Print.removeLastCommaAndGetDescriptor(
       staticArgs.fileDescriptor,
       baseUrlPath

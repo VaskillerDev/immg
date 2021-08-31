@@ -31,6 +31,12 @@ export default class Print {
     const fileContent = readFileSync(pathToPackageImportMapFile, {
       encoding: 'utf-8',
     })
+    
+    const penultimateChar = fileContent.charAt(fileContent.length - 2);
+    if (penultimateChar !== ',') {
+      return openSync(pathToPackageImportMapFile, 'a+')
+    }
+    
     const content = fileContent.slice(0, -2) // del \n and comma
 
     writeFileSync(pathToPackageImportMapFile, content)
