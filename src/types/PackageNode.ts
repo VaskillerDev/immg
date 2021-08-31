@@ -1,22 +1,41 @@
 ﻿import {existsSync, readFileSync} from "fs";
-import {Json} from "./Json";
 import path, {dirname, join} from "path";
+import {Json} from "./Json";
 
 export class PackageNode {
     readonly #name : PackageName = "";
     readonly #version : PackageVersion = "";
     readonly #nodes : PackageNode[] = [];
     readonly #pathToPackageJson : string = "";
+    readonly #main : PackageMain = "";
+    readonly #parent : PackageNode | undefined;
     
-    constructor(pathToPackageJson : string) {
+    constructor(pathToPackageJson : string, parent ?: PackageNode) {
+        this.#parent = parent;
         this.#pathToPackageJson = pathToPackageJson;
         
         const packageJsonContent = readFileSync(pathToPackageJson, { encoding: 'utf-8'});
         const packageJsonContentAsJson = JSON.parse(packageJsonContent) as Json;
-
+        
         this.#name = PN.extractName(packageJsonContentAsJson);
         this.#version = PN.extractVersion(packageJsonContentAsJson);
+        this.#main = PN.extractMain(packageJsonContentAsJson);
         this.#nodes = this.extractNodes(packageJsonContentAsJson);
+    }
+    
+    public foreachNode(lambda: UsageLambda) : void {
+        const info : PackageInfo = {
+            name: this.#name,
+            main: this.#main,
+            version: this.#version,
+            pathToPackageJson: this.#pathToPackageJson
+        }
+        lambda(info);
+        for (const node of this.#nodes) node.foreachNode(lambda);
+    }
+    
+    public get parent() : PackageNode | undefined {
+        return this.#parent;
     }
     
     public get children() : PackageNode[]{
@@ -39,6 +58,10 @@ export class PackageNode {
         return packageJsonContent['version'] as PackageVersion;
     }
     
+    private static extractMain(packageJsonContent : Json) : PackageMain {
+        return (packageJsonContent['main'] || 'index.js') as PackageMain
+    }
+    
     private extractNodes(packageJsonContent : Json) : PackageNode[] {
         const packages = packageJsonContent['dependencies'] as Json;
         if (!packages) return [] // dependencies not found
@@ -53,15 +76,11 @@ export class PackageNode {
             if (packageJsonPath === null) 
                 continue;
             
-            const node = new PackageNode(packageJsonPath);
+            const node = new PackageNode(packageJsonPath, this);
             nodes.push(node);
         }
         
         return nodes;
-    }
-    
-    private static isInclude(value: string, list : string[]) : boolean {
-        return list.includes(value);
     }
     
     private genPackageJsonPath( packageName : string) : string {
@@ -92,3 +111,13 @@ export class PackageNode {
 const PN = PackageNode;
 type PackageName = string;
 type PackageVersion = string;
+type PackageMain = string;
+
+export type PackageInfo = {
+    name: PackageName,
+    version: PackageVersion,
+    main : PackageMain,
+    pathToPackageJson : string
+}
+
+export type UsageLambda = (info: PackageInfo) => void;
