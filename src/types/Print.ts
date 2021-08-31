@@ -8,6 +8,9 @@
 import { dirname, join } from 'path'
 
 export default class Print {
+  /**
+   * @param fileDescriptor
+   */
   static openImports(fileDescriptor: number): void {
     appendFileSync(fileDescriptor, `{\n`)
     appendFileSync(fileDescriptor, `"imports": {\n`)
@@ -43,6 +46,19 @@ export default class Print {
     return openSync(pathToPackageImportMapFile, 'a+')
   }
 
+  /**
+   * 
+   * @param fileDescriptor
+   * @param msg
+   */
+  static to(fileDescriptor: number, msg : string) : void {
+    appendFileSync(fileDescriptor, msg);
+  }
+  
+  /**
+   * 
+   * @param fileDescriptor
+   */
   static closeImports(fileDescriptor: number): void {
     appendFileSync(fileDescriptor, `\n}\n`)
     appendFileSync(fileDescriptor, `}`)
