@@ -22,8 +22,6 @@ export default function depToNodeModules(
   const pathDepToPackageJson = join(pathToDep, 'package.json')
   const fullPathToPackageJson = join(dirname(baseUrlPath), pathDepToPackageJson)
   
-  2+2;
-  
   const depPackageJsonContent = readFileSync(fullPathToPackageJson, {
     encoding: 'utf-8',
   })
