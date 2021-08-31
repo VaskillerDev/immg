@@ -9,8 +9,6 @@ export class PackageNode {
     readonly #pathToPackageJson : string = "";
     
     constructor(pathToPackageJson : string) {
-
-        pathToPackageJson = this.findPackageJson(pathToPackageJson);
         this.#pathToPackageJson = pathToPackageJson;
         
         const packageJsonContent = readFileSync(pathToPackageJson, { encoding: 'utf-8'});
@@ -48,9 +46,13 @@ export class PackageNode {
         const nodes : PackageNode[] = []
         
         for (const packageName in packages) {
-            if (PN.isInclude(packageName, JestList)) continue;
             if (!packages.hasOwnProperty(packageName)) continue;
-            const packageJsonPath = this.genPackageJsonPath(packageName);
+            
+            let packageJsonPath : string | null = this.genPackageJsonPath(packageName);
+            packageJsonPath = this.findPackageJson(packageJsonPath);
+            if (packageJsonPath === null) 
+                continue;
+            
             const node = new PackageNode(packageJsonPath);
             nodes.push(node);
         }
@@ -67,15 +69,19 @@ export class PackageNode {
         return join(dirWithPackageJson, 'node_modules', packageName, 'package.json');
     }
     
-    private findPackageJson(pathToPackageJson : string) : string {
+    private findPackageJson(pathToPackageJson : string) : string | null {
         if (existsSync(pathToPackageJson)) 
             return pathToPackageJson;
         
         let elems = pathToPackageJson.split(path.sep);
         const nmsIdx : number[] = [];
-        elems.forEach((elem, i) =>  { if (elem === 'node_modules') nmsIdx.push(i) })
-        const startPos = nmsIdx[0];
-        const rmElemsCount = nmsIdx[1] - nmsIdx[0];
+        for (let i = 0; i < elems.length; i++) 
+            if (elems[i] === 'node_modules') nmsIdx.push(i)
+        
+        if (nmsIdx.length < 2) return null;
+        
+        const [startPos, endPos] = nmsIdx;
+        const rmElemsCount = endPos - startPos;
         elems.splice(startPos, rmElemsCount);
         pathToPackageJson = elems.join(path.sep);
         
@@ -86,11 +92,3 @@ export class PackageNode {
 const PN = PackageNode;
 type PackageName = string;
 type PackageVersion = string;
-
-// for unknown reasons, jest breaks the recursion
-// and provoke call stack exceptions
-const JestList : string[] = [
-    "jest",
-    "@types/jest",
-    "ts-jest"
-];
