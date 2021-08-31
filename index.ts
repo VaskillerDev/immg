@@ -1,6 +1,5 @@
 ﻿import GenerateImportMapsArgs from "./src/types/GenerateImportMapsArgs.js";
 import generateImportMap from "./src/utils/generateImportMap.js";
-import {PackageNode} from "./src/types/PackageNode.js";
 
 /**
  * Usage: node index.js './typedoc/package.json'
@@ -24,5 +23,3 @@ const args: GenerateImportMapsArgs = {
 generateImportMap(args)
 
 export default { generateImportMap }
-
-const node = new PackageNode(baseUrlPathArg);
