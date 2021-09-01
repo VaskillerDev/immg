@@ -22,34 +22,60 @@ export class PackageNode {
         this.#main = PN.extractMain(packageJsonContentAsJson);
         this.#nodes = this.extractNodes(packageJsonContentAsJson);
     }
-    
+
+    /**
+     * Iterate all nodes
+     * @param {{UsageLambda}} lambda
+     */
     public foreachNode(lambda: UsageLambda) : void {
-        const info : PackageInfo = {
-            name: this.#name,
-            main: this.#main,
-            version: this.#version,
-            pathToPackageJson: this.#pathToPackageJson
-        }
-        lambda(info);
+        lambda(this);
         for (const node of this.#nodes) node.foreachNode(lambda);
     }
-    
+
+    /**
+     * Get parent package
+     * if return undefined - is root package
+     */
     public get parent() : PackageNode | undefined {
         return this.#parent;
     }
-    
+
+    /**
+     * Get other packages
+     */
     public get children() : PackageNode[]{
         return this.#nodes;
     }
-    
+
+    /**
+     * Get package name
+     */
     public get name() : PackageName {
         return this.#name;
     }
-    
+
+    /**
+     * Get package version
+     */
     public get version() : PackageVersion {
         return this.#version;
     }
+
+    /**
+     * Get path to package.json
+     */
+    public get pathToPackageJson() : string {
+        return this.#pathToPackageJson;
+    }
+
+    /**
+     * Get main entry point for package
+     */
+    public get main() : PackageMain {
+        return this.#main;
+    }
     
+    //-----------------------------------------------------------------------------
     private static extractName(packageJsonContent : Json) : PackageName {
         return packageJsonContent['name'] as PackageName;
     }
@@ -87,7 +113,11 @@ export class PackageNode {
         const dirWithPackageJson = dirname(this.#pathToPackageJson);
         return join(dirWithPackageJson, 'node_modules', packageName, 'package.json');
     }
-    
+
+    /**
+     * @param pathToPackageJson
+     * @private
+     */
     private findPackageJson(pathToPackageJson : string) : string | null {
         if (existsSync(pathToPackageJson)) 
             return pathToPackageJson;
@@ -109,9 +139,9 @@ export class PackageNode {
 }
 
 const PN = PackageNode;
-type PackageName = string;
-type PackageVersion = string;
-type PackageMain = string;
+export type PackageName = string;
+export type PackageVersion = string;
+export type PackageMain = string;
 
 export type PackageInfo = {
     name: PackageName,
@@ -120,4 +150,4 @@ export type PackageInfo = {
     pathToPackageJson : string
 }
 
-export type UsageLambda = (info: PackageInfo) => void;
+export type UsageLambda = (node: PackageNode) => void;

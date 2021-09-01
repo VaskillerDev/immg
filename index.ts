@@ -14,10 +14,12 @@ if (baseUrlPathNotFound)
   console.error('Argument not found: base url path to sever not found')
 
 const forceModeArg: boolean = userArgs[1] === 'true' || false
+const prefixArg: string = userArgs[2] || "";
 
 const args: GenerateImportMapsArgs = {
   baseUrlPath: baseUrlPathArg,
   forceMode: forceModeArg,
+  prefix: prefixArg
 }
 
 generateImportMap(args)
