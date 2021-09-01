@@ -11,5 +11,5 @@ node dist/index.js './my-npm-project/package.json'
 
 - [x] Basic generator import path
 - [x] Specifier remapping
-- [ ] Scoping support
+- [x] Scoping support
 - [ ] Dynamic import map API
