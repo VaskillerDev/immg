@@ -1,16 +1,17 @@
 ﻿import { dirname, join } from 'path'
 import { existsSync, writeFileSync } from 'fs'
+import GenerateImportMapsArgs from "../types/GenerateImportMapsArgs.js";
 
 /**
- *  @param {PathLike | String} pathToPackageJson
- *  @param {Boolean} forceMode
- *  @return {PathLike | String} pathToImportMapFile
+ * @param args
+ * @return {PathLike | String} pathToImportMapFile
  */
 export default function tryCreateImportMapFile(
-  pathToPackageJson: string,
-  forceMode: boolean
+    args: GenerateImportMapsArgs
 ): string {
-  const baseDir = dirname(pathToPackageJson)
+  const {baseUrlPath, forceMode} = args;
+  
+  const baseDir = dirname(baseUrlPath)
   const pathToImportMapFile = join(baseDir, 'package.importmap.json')
 
   if (existsSync(pathToImportMapFile) && !forceMode)

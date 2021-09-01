@@ -13,15 +13,12 @@ import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
  * @param args
  */
 export default function generateImportMap(args: GenerateImportMapsArgs): void {
-  const { baseUrlPath, forceMode, prefix } = args
-
-  const pathToImportMapFile = tryCreateImportMapFile(baseUrlPath, forceMode)
+  const pathToImportMapFile = tryCreateImportMapFile(args);
   const fd = openSync(pathToImportMapFile, 'a+') // file descriptor
-
-  const entryNode = new PackageNode(baseUrlPath)
+  const entryNode = new PackageNode(args.baseUrlPath)
 
   try {
-    const importMap: ImportMap = new ImportMap(baseUrlPath, prefix)
+    const importMap: ImportMap = new ImportMap(args);
     entryNode.foreachNode(node => importMap.addImport(node))
     const prettyJson = importMap.asPrettyStringify()
 
