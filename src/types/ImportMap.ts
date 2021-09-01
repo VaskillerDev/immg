@@ -57,6 +57,7 @@ export default class ImportMap {
 
     if (IM.isHighLevelPackageDependency(node)) {
       this.#imports[node.name] = this.makeUnixPathToMainFile(node)
+      this.#imports[node.name+'/'] = this.makeUnixPathToMainDir(node)
       return
     }
 
@@ -64,6 +65,7 @@ export default class ImportMap {
 
     const scopeNode = (this.#scopes[pathToParentPackageDir] || {}) as Json
     scopeNode[node.name] = this.makeUnixPathToMainFile(node)
+    scopeNode[node.name+'/'] = this.makeUnixPathToMainDir(node)
     this.#scopes[pathToParentPackageDir] = scopeNode
   }
 
@@ -93,10 +95,19 @@ export default class ImportMap {
 
   private makeUnixPathToMainFile(node: PackageNode): string {
     const pathToPackageDir = path.dirname(node.pathToPackageJson)
-    const mainDir = node.main.split('/').slice(0, -1).join(path.sep)
     const relativePath = path.relative(
       this.#baseUrl,
-      path.join(pathToPackageDir, mainDir)
+      path.join(pathToPackageDir, node.main)
+    )
+
+    return this.#prefix + relativePath.replaceAll('\\', '/')
+  }
+
+  private makeUnixPathToMainDir(node: PackageNode): string {
+    const pathToPackageDir = path.dirname(node.pathToPackageJson)
+    const relativePath = path.relative(
+        this.#baseUrl,
+        pathToPackageDir //path.join(, mainDir)
     )
 
     return this.#prefix + relativePath.replaceAll('\\', '/') + '/'
