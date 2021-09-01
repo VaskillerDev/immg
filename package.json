@@ -6,17 +6,20 @@
   "type": "module",
   "scripts": {
     "prestart": "npx tsc",
-    "start": "node -- dist/index.js"
+    "start": "node dist/index.js"
   },
   "files": [
     "dist",
     "utils",
     "types"
   ],
+  "dependencies": {
+    "commander": "8.1.0"
+  },
   "devDependencies": {
+    "@types/node": "16.0.0",
     "prettier": "2.3.2",
-    "typescript": "4.4.2",
-    "@types/node": "16.0.0"
+    "typescript": "4.4.2"
   },
   "keywords": [
     "import-maps",
@@ -24,5 +27,9 @@
     "JavaScript imports"
   ],
   "author": "Vaskiller",
-  "license": "MIT"
+  "license": "MIT",
+  "preferGlobal": true,
+  "bin": {
+    "immg": "/dist/index.js"
+  }
 }
