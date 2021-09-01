@@ -22,6 +22,8 @@ export default class ImportMap {
 
   readonly #prefix: string = ''
 
+  readonly #packageHistory: Set<string> = new Set<string>();
+  
   constructor(args: GenerateImportMapsArgs) {
     const { baseUrlPath, prefix } = args
 
@@ -61,6 +63,12 @@ export default class ImportMap {
       return
     }
 
+    if (!this.#packageHistory.has(node.name)) {
+      this.#imports[node.name] = this.makeUnixPathToMainFile(node)
+      this.#imports[node.name+'/'] = this.makeUnixPathToMainDir(node)
+      this.#packageHistory.add(node.name);
+    }
+    
     const pathToParentPackageDir = this.makeUnixPathToParentDir(node.parent)
 
     const scopeNode = (this.#scopes[pathToParentPackageDir] || {}) as Json
