@@ -8,7 +8,7 @@ import printImportMap from './src/utils/printImportMap.js'
 const cli = new Command()
 
 cli
-  .option(
+  .requiredOption(
     '-b, --baseUrlPath [type]',
     '<string> path to root package.json',
     undefined
@@ -28,7 +28,7 @@ cli
 const args: GenerateImportMapsArgs = cli.opts<GenerateImportMapsArgs>()
 
 if (!args.baseUrlPath) {
-  console.error('Argument not found: base url path to sever not found')
+  console.error('Argument not found: base path to package.json not found')
   process.exit(1)
 }
 
