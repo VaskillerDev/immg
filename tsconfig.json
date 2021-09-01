@@ -8,12 +8,12 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "types": ["node"],
-    
+
     /* Dirs */
     "outDir": "dist/",
     "rootDir": ".",
     "rootDirs": ["src/types/*", "src/utils/*"],
-    
+
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
