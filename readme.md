@@ -29,9 +29,9 @@ npx immg --baseUrlPath D:\path\to\your\package.json --forceMode true --prefix ./
 
 ```shell
 git clone https://github.com/VaskillerDev/import-maps-gen.git
+cd import-maps-gen
 npm i
 npx tsc
-cd import-maps-gen
 npm i -g .
 npm link
 ```
