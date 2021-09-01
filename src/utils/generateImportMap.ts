@@ -1,9 +1,4 @@
-﻿import { openSync } from 'fs'
-
-import tryCreateImportMapFile from './tryCreateImportMapFile.js'
-
-import Print from '../types/Print.js'
-import ImportMap from '../types/ImportMap.js'
+﻿import ImportMap from '../types/ImportMap.js'
 import { PackageNode } from '../types/PackageNode.js'
 import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
 
@@ -12,18 +7,15 @@ import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
  *  See: {@link https://github.com/WICG/import-maps Import maps}
  * @param args
  */
-export default function generateImportMap(args: GenerateImportMapsArgs): void {
-  const pathToImportMapFile = tryCreateImportMapFile(args)
-  const fd = openSync(pathToImportMapFile, 'a+') // file descriptor
-  const entryNode = new PackageNode(args.baseUrlPath)
-
+export default function generateImportMap(
+  args: GenerateImportMapsArgs
+): ImportMap | undefined {
   try {
+    const entryNode = new PackageNode(args.baseUrlPath)
     const importMap: ImportMap = new ImportMap(args)
     entryNode.foreachNode(node => importMap.addImport(node))
-    const prettyJson = importMap.asPrettyStringify()
 
-    Print.to(fd, prettyJson)
-    Print.close(fd)
+    return importMap
   } catch (e) {
     console.error(e)
   }
