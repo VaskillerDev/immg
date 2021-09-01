@@ -1,7 +1,7 @@
 ﻿import path from 'path'
 import { Json } from './Json.js'
 import { PackageNode } from './PackageNode.js'
-import GenerateImportMapsArgs from "./GenerateImportMapsArgs";
+import GenerateImportMapsArgs from './GenerateImportMapsArgs'
 
 export default class ImportMap {
   /**
@@ -23,8 +23,8 @@ export default class ImportMap {
   readonly #prefix: string = ''
 
   constructor(args: GenerateImportMapsArgs) {
-    const {baseUrlPath, prefix} = args
-    
+    const { baseUrlPath, prefix } = args
+
     this.#baseUrl = path.dirname(baseUrlPath)
     this.#prefix = prefix
   }
