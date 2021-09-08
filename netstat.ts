@@ -11,13 +11,11 @@ const cli = new Command()
 cli
   .requiredOption(
     '-p, --pathToFile [type]',
-    '<string> path to package.importmap.json',
-    undefined
+    '<string> path to package.importmap.json'
   )
   .option(
     '-u, --baseUrl [type]',
-    '<string> base url to server with modules',
-    false
+    '<string> base url to server with modules'
   )
   .parse()
 
