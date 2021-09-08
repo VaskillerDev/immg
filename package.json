@@ -15,7 +15,8 @@
     "types"
   ],
   "dependencies": {
-    "commander": "8.1.0"
+    "commander": "8.1.0",
+    "node-fetch": "3.0.0"
   },
   "devDependencies": {
     "@types/node": "16.0.0",
