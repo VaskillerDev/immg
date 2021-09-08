@@ -28,8 +28,8 @@ npx immg --baseUrlPath D:\path\to\your\package.json --forceMode true --prefix ./
 ## Locally install
 
 ```shell
-git clone https://github.com/VaskillerDev/import-maps-gen.git
-cd import-maps-gen
+git clone https://github.com/VaskillerDev/immg.git
+cd immg
 npm i
 npx tsc
 npm i -g .
