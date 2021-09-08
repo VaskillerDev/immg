@@ -2,7 +2,7 @@
 
 ## Usage:
 
-```
+```shell
 npx immg --help
 
 Options:
@@ -21,7 +21,7 @@ Options:
 
 ## Example:
 
-```
+```shell
 npx immg --baseUrlPath D:\path\to\your\package.json --forceMode true --prefix ./module/
 ```
 
@@ -36,9 +36,20 @@ npm i -g .
 npm link
 ```
 
+## Netstat usage:
+```shell
+npx immg-netstat --help
+
+Options:
+  -p, --pathToFile [type]  <string> path to package.importmap.json
+  -u, --baseUrl [type]     <string> base url to server with modules
+  -h, --help               display help for command
+```
+
 ## Todo
 
 - [x] Basic generator import path
 - [x] Specifier remapping
 - [x] Scoping support
+- [x] Web checker access es-module via response code 
 - [ ] Dynamic import map API
