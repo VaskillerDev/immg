@@ -2,6 +2,7 @@
 import { Json } from './Json.js'
 import { PackageNode } from './PackageNode.js'
 import GenerateImportMapsArgs from './GenerateImportMapsArgs'
+import * as fs from "fs";
 
 export default class ImportMap {
   /**
@@ -29,6 +30,20 @@ export default class ImportMap {
     this.#prefix = prefix
   }
 
+  public static fromFile(path : string) : ImportMap | undefined {
+    try {
+      const packageImportmapJsonAsString = fs.readFileSync(path).toString('utf-8');
+      const packageImportmapJson = JSON.parse(packageImportmapJsonAsString);
+      
+      const importMap : ImportMap = new ImportMap({baseUrlPath:"", prefix: "", forceMode: false});
+      importMap.#imports = packageImportmapJson["imports"];
+      importMap.#scopes = packageImportmapJson["scopes"];
+      return importMap;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  
   /**
    * Get imports field
    * @see https://github.com/WICG/import-maps#specifier-remapping-examples

@@ -9,8 +9,8 @@ import NetStatArgs from "../types/NetStatArgs.js";
  *  URL access checker. Send to module url request and expect code 200
  */
 export default async function(args : NetStatArgs, importMap : ImportMap) {
-    const {scheme, host, port, basePath} = args;
-    const baseUrl = `${scheme}://${host}:${port}${basePath}`;
+    const {protocol, hostname, port, pathname} = args;
+    const baseUrl = `${protocol}//${hostname}:${port}${pathname}`;
     const imports = importMap.imports;
     const scopes = importMap.scopes;
     

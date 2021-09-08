@@ -1,13 +1,14 @@
 {
   "name": "import-maps-gen",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Import maps generator",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "preinstall": "npx tsc",
     "prestart": "npx tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "netstat" : "npx tsc && node dist/netstat.js"
   },
   "files": [
     "dist",
@@ -32,6 +33,7 @@
   "license": "MIT",
   "preferGlobal": true,
   "bin": {
-    "immg": "/dist/index.js"
+    "immg": "/dist/index.js",
+    "immg-netstat": "/dist/netstat.js"
   }
 }

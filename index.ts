@@ -3,9 +3,7 @@ import { Command } from 'commander'
 
 import GenerateImportMapsArgs from './src/types/GenerateImportMapsArgs.js'
 import generateImportMap from './src/utils/generateImportMap.js'
-import netStatImportMap from "./src/utils/netStatImportMap.js";
 import printImportMap from './src/utils/printImportMap.js'
-import NetStatArgs from "./src/types/NetStatArgs.js";
 
 const cli = new Command()
 
@@ -40,13 +38,4 @@ if (importMap === undefined) {
   process.exit(1)
 }
 
-const netStatArgs : NetStatArgs = { // TODO: rewrite later
-  scheme: 'http',
-  host : 'localhost',
-  basePath: '/sdk/web/client',
-  port: '8080'
-};
-
-netStatImportMap(netStatArgs, importMap); 
-
-//printImportMap(args, importMap) //TODO: enable later
+printImportMap(args, importMap)

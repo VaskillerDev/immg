@@ -1,6 +1,8 @@
 ﻿export default interface NetStatArgs {
-    scheme : string,
-    host : string,
+    pathToPackageImportmapJson : string,
+    
+    protocol : string,
+    hostname : string,
     port : string,
-    basePath : string
+    pathname : string
 }
