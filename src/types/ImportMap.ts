@@ -74,9 +74,9 @@ export default class ImportMap {
    * @param node
    */
   public addImport(node: PackageNode): void {
-    if (node.parent === undefined) return // is root
+    const isRoot = node.parent === undefined;
 
-    if (IM.isHighLevelPackageDependency(node)) {
+    if (IM.isHighLevelPackageDependency(node) || isRoot) {
       this.#imports[node.name] = this.makeUnixPathToMainFile(node)
       this.#imports[node.name + '/'] = this.makeUnixPathToMainDir(node)
       return
