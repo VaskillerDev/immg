@@ -98,7 +98,7 @@ export class PackageNode {
 
     for (const packageName in packages) {
       if (!packages.hasOwnProperty(packageName)) continue
-
+      if (packageName.includes('@types')) continue
       let packageJsonPath: string | null = this.genPackageJsonPath(packageName)
       packageJsonPath = this.findPackageJson(packageJsonPath)
       if (packageJsonPath === null) continue
