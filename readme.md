@@ -19,7 +19,7 @@ Options:
   -h, --help                display help for command
 ```
 
-## Example:
+### Example:
 
 ```shell
 npx immg --baseUrlPath D:\path\to\your\package.json --forceMode true --prefix ./module/
@@ -44,6 +44,11 @@ Options:
   -p, --pathToFile [type]  <string> path to package.importmap.json
   -u, --baseUrl [type]     <string> base url to server with modules
   -h, --help               display help for command
+```
+
+### Example:
+```shell
+npx immg-netstat -p D:\path\to\your\package.importmap.json -u https://localhost:9000/your/project/root
 ```
 
 ## Todo
