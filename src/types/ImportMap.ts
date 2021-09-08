@@ -2,7 +2,7 @@
 import { Json } from './Json.js'
 import { PackageNode } from './PackageNode.js'
 import GenerateImportMapsArgs from './GenerateImportMapsArgs'
-import * as fs from "fs";
+import * as fs from 'fs'
 
 export default class ImportMap {
   /**
@@ -22,7 +22,7 @@ export default class ImportMap {
   readonly #baseUrl: string = ''
 
   readonly #prefix: string = ''
-  
+
   constructor(args: GenerateImportMapsArgs) {
     const { baseUrlPath, prefix } = args
 
@@ -30,20 +30,26 @@ export default class ImportMap {
     this.#prefix = prefix
   }
 
-  public static fromFile(path : string) : ImportMap | undefined {
+  public static fromFile(path: string): ImportMap | undefined {
     try {
-      const packageImportmapJsonAsString = fs.readFileSync(path).toString('utf-8');
-      const packageImportmapJson = JSON.parse(packageImportmapJsonAsString);
-      
-      const importMap : ImportMap = new ImportMap({baseUrlPath:"", prefix: "", forceMode: false});
-      importMap.#imports = packageImportmapJson["imports"];
-      importMap.#scopes = packageImportmapJson["scopes"];
-      return importMap;
+      const packageImportmapJsonAsString = fs
+        .readFileSync(path)
+        .toString('utf-8')
+      const packageImportmapJson = JSON.parse(packageImportmapJsonAsString)
+
+      const importMap: ImportMap = new ImportMap({
+        baseUrlPath: '',
+        prefix: '',
+        forceMode: false,
+      })
+      importMap.#imports = packageImportmapJson['imports']
+      importMap.#scopes = packageImportmapJson['scopes']
+      return importMap
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
   }
-  
+
   /**
    * Get imports field
    * @see https://github.com/WICG/import-maps#specifier-remapping-examples
@@ -72,14 +78,14 @@ export default class ImportMap {
 
     if (IM.isHighLevelPackageDependency(node)) {
       this.#imports[node.name] = this.makeUnixPathToMainFile(node)
-      this.#imports[node.name+'/'] = this.makeUnixPathToMainDir(node)
+      this.#imports[node.name + '/'] = this.makeUnixPathToMainDir(node)
       return
     }
-    
+
     const pathToParentPackageDir = this.makeUnixPathToParentDir(node.parent)
     const scopeNode = (this.#scopes[pathToParentPackageDir] || {}) as Json
     scopeNode[node.name] = this.makeUnixPathToMainFile(node)
-    scopeNode[node.name+'/'] = this.makeUnixPathToMainDir(node)
+    scopeNode[node.name + '/'] = this.makeUnixPathToMainDir(node)
     this.#scopes[pathToParentPackageDir] = scopeNode
   }
 
@@ -120,8 +126,8 @@ export default class ImportMap {
   private makeUnixPathToMainDir(node: PackageNode): string {
     const pathToPackageDir = path.dirname(node.pathToPackageJson)
     const relativePath = path.relative(
-        this.#baseUrl,
-        pathToPackageDir //path.join(, mainDir)
+      this.#baseUrl,
+      pathToPackageDir //path.join(, mainDir)
     )
 
     return this.#prefix + relativePath.replaceAll('\\', '/') + '/'

@@ -8,7 +8,7 @@
     "preinstall": "npx tsc",
     "prestart": "npx tsc",
     "start": "node dist/index.js",
-    "netstat" : "npx tsc && node dist/netstat.js"
+    "netstat": "npx tsc && node dist/netstat.js"
   },
   "files": [
     "dist",

@@ -37,6 +37,7 @@ npm link
 ```
 
 ## Netstat usage:
+
 ```shell
 npx immg-netstat --help
 
@@ -47,6 +48,7 @@ Options:
 ```
 
 ### Example:
+
 ```shell
 npx immg-netstat -p D:\path\to\your\package.importmap.json -u https://localhost:9000/your/project/root
 ```
@@ -56,5 +58,5 @@ npx immg-netstat -p D:\path\to\your\package.importmap.json -u https://localhost:
 - [x] Basic generator import path
 - [x] Specifier remapping
 - [x] Scoping support
-- [x] Web checker access es-module via response code 
+- [x] Web checker access es-module via response code
 - [ ] Dynamic import map API

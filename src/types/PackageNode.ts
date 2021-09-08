@@ -127,9 +127,9 @@ export class PackageNode {
     for (let i = 0; i < elems.length; i++)
       if (elems[i] === 'node_modules') nmsIdx.push(i)
 
-    const startPos =nmsIdx[nmsIdx.length -2];
-    const endPos = nmsIdx[nmsIdx.length - 1];
-    
+    const startPos = nmsIdx[nmsIdx.length - 2]
+    const endPos = nmsIdx[nmsIdx.length - 1]
+
     const rmElemsCount = endPos - startPos
     elems.splice(startPos, rmElemsCount)
     pathToPackageJson = elems.join(path.sep)
