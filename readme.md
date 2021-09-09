@@ -3,7 +3,7 @@
 ## Usage:
 
 ```shell
-npx immg --help
+> npx immg --help
 
 Options:
   -b, --baseUrlPath [type]  <string> path to root package.json
@@ -22,24 +22,27 @@ Options:
 ### Example:
 
 ```shell
-npx immg --baseUrlPath D:\path\to\your\package.json --forceMode true --prefix ./module/
+npx immg --baseUrlPath D:/path/to/your/package.json --forceMode true --prefix ./module/
+```
+or
+```shell
+> cd path/to/your/project
+> npx immg -x ./module/ -f true
 ```
 
 ## Locally install
 
 ```shell
-git clone https://github.com/VaskillerDev/immg.git
-cd immg
-npm i
-npx tsc
-npm i -g .
-npm link
+> git clone https://github.com/VaskillerDev/immg.git
+> cd immg
+> npm i -g .
+> npm link
 ```
 
 ## Netstat usage:
 
 ```shell
-npx immg-netstat --help
+> npx immg-netstat --help
 
 Options:
   -p, --pathToFile [type]  <string> path to package.importmap.json
@@ -50,7 +53,7 @@ Options:
 ### Example:
 
 ```shell
-npx immg-netstat -p D:\path\to\your\package.importmap.json -u https://localhost:9000/your/project/root
+npx immg-netstat -p D:/path/to/your/package.importmap.json -u https://localhost:9000/your/project/root
 ```
 
 ## Todo

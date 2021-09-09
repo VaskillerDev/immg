@@ -1,4 +1,5 @@
 ﻿#!/usr/bin/env node
+import path from "path";
 import { URL } from 'url'
 import { Command } from 'commander'
 
@@ -11,7 +12,8 @@ const cli = new Command()
 cli
   .requiredOption(
     '-p, --pathToFile [type]',
-    '<string> path to package.importmap.json'
+    '<string> path to package.importmap.json',
+      path.join(process.cwd(), 'package.importmap.json')
   )
   .option('-u, --baseUrl [type]', '<string> base url to server with modules')
   .parse()

@@ -1,4 +1,5 @@
 ﻿#!/usr/bin/env node
+import path from "path";
 import { Command } from 'commander'
 
 import GenerateImportMapsArgs from './src/types/GenerateImportMapsArgs.js'
@@ -8,10 +9,10 @@ import printImportMap from './src/utils/printImportMap.js'
 const cli = new Command()
 
 cli
-  .requiredOption(
+  .option(
     '-b, --baseUrlPath [type]',
     '<string> path to root package.json',
-    undefined
+      path.join(process.cwd(), 'package.json')
   )
   .option(
     '-f, --forceMode [type]',
