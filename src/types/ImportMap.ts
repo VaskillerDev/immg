@@ -74,23 +74,24 @@ export default class ImportMap {
    * @param node
    */
   public addImport(node: PackageNode): void {
-    
-    this.addImportItem(node);
+    this.addImportItem(node)
 
-    { // add scope key by filesystem parent
-      const pathToParentPackageDir = this.makeUnixPathToParentDir(node);
-      this.addScopeItem(pathToParentPackageDir, node);
+    {
+      // add scope key by filesystem parent
+      const pathToParentPackageDir = this.makeUnixPathToParentDir(node)
+      this.addScopeItem(pathToParentPackageDir, node)
     }
 
-    { // add scope from current node and his children
-      const pathToMainDir = this.makeUnixPathToMainDir(node).substring(2); // remove './' from path
-      const scopeNode = this.addScopeItem(pathToMainDir, node);
-      
+    {
+      // add scope from current node and his children
+      const pathToMainDir = this.makeUnixPathToMainDir(node).substring(2) // remove './' from path
+      const scopeNode = this.addScopeItem(pathToMainDir, node)
+
       for (const child of node.children) {
         scopeNode[node.name] = this.makeUnixPathToMainFile(child)
         scopeNode[IM.appendSlash(node.name)] = this.makeUnixPathToMainDir(child)
       }
-      
+
       this.#scopes[pathToMainDir] = scopeNode
     }
   }
@@ -111,20 +112,24 @@ export default class ImportMap {
   // because the actual parent may differ from what is formed in the file system,
   // so some paths may be uncorrected.
   private makeUnixPathToParentDir(node: PackageNode): string {
-    const indexLastNodeModulesPoint = node.pathToPackageJson.lastIndexOf("node_modules");
+    const indexLastNodeModulesPoint =
+      node.pathToPackageJson.lastIndexOf('node_modules')
     // parent from filesystem, not by package.json
-    const pathToFsParent = node.pathToPackageJson.substring(indexLastNodeModulesPoint, -1);
+    const pathToFsParent = node.pathToPackageJson.substring(
+      indexLastNodeModulesPoint,
+      -1
+    )
     const relToParentPackageDir = path.relative(this.#baseUrl, pathToFsParent)
-    
+
     let res = path.join(this.#prefix, relToParentPackageDir)
-    res = res.replaceAll('\\', '/');
-    res = IM.appendSlash(res);
-    
-    return res;
+    res = res.replaceAll('\\', '/')
+    res = IM.appendSlash(res)
+
+    return res
   }
 
   // TODO: remove later
-/*  private makeUnixPathToParentDirOld(parent: PackageNode): string {
+  /*  private makeUnixPathToParentDirOld(parent: PackageNode): string {
     const relToParentPackageDir = path.relative(
       this.#baseUrl,
       parent.pathToPackageJson
@@ -148,38 +153,33 @@ export default class ImportMap {
 
   private makeUnixPathToMainDir(node: PackageNode): string {
     const pathToPackageDir = path.dirname(node.pathToPackageJson)
-    const relativePath = path.relative(
-      this.#baseUrl,
-      pathToPackageDir
-    )
+    const relativePath = path.relative(this.#baseUrl, pathToPackageDir)
 
-    return IM.appendSlash(
-        this.#prefix + relativePath.replaceAll('\\', '/')
-    );
+    return IM.appendSlash(this.#prefix + relativePath.replaceAll('\\', '/'))
   }
-  
-  private addImportItem(node : PackageNode) : void {
-    const isRoot = node.parent === undefined;
+
+  private addImportItem(node: PackageNode): void {
+    const isRoot = node.parent === undefined
     const isCanAddToImports = isRoot || IM.isHighLevelPackageDependency(node)
 
-    if (!isCanAddToImports) return;
-    
+    if (!isCanAddToImports) return
+
     this.#imports[node.name] = this.makeUnixPathToMainFile(node)
     this.#imports[IM.appendSlash(node.name)] = this.makeUnixPathToMainDir(node)
   }
-  
-  private addScopeItem(scopePath : string, node: PackageNode) : Json {
+
+  private addScopeItem(scopePath: string, node: PackageNode): Json {
     const scopeNode = (this.#scopes[scopePath] || {}) as Json
 
     scopeNode[node.name] = this.makeUnixPathToMainFile(node)
     scopeNode[IM.appendSlash(node.name)] = this.makeUnixPathToMainDir(node)
-    this.#scopes[scopePath] = scopeNode;
-    return scopeNode;
+    this.#scopes[scopePath] = scopeNode
+    return scopeNode
   }
-  
-  private static appendSlash(val : string) : string {
-    const hasSlash = val.charAt(val.length -1) === '/';
-    return hasSlash ? val : val + '/';
+
+  private static appendSlash(val: string): string {
+    const hasSlash = val.charAt(val.length - 1) === '/'
+    return hasSlash ? val : val + '/'
   }
 }
 

@@ -13,10 +13,7 @@ cli
     '-p, --pathToFile [type]',
     '<string> path to package.importmap.json'
   )
-  .option(
-    '-u, --baseUrl [type]',
-    '<string> base url to server with modules'
-  )
+  .option('-u, --baseUrl [type]', '<string> base url to server with modules')
   .parse()
 
 const opts = cli.opts()
