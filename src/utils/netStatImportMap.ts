@@ -1,4 +1,4 @@
-﻿import fetch from 'node-fetch'
+﻿import axios from 'axios'
 
 import { Json } from '../types/Json.js'
 import ImportMap from '../types/ImportMap.js'
@@ -47,16 +47,20 @@ async function checkStatus(
   payload: Object = {},
   expectStatusCode: number = 200
 ) {
-  // for example: http:localhost:666/blabla/ - is dir
   const lastChar = url.charAt(url.length - 1)
+
   const isDir = lastChar === '/'
   if (isDir) return
 
-  const res = await fetch(url, { method: 'GET' })
-  if (res.status !== expectStatusCode) {
-    console.warn(
-      `[netStat] unable code: in  ${url} return ${res.status} expect ${expectStatusCode}`
-    )
-    console.warn('[netStat] payload: ', payload)
+  try {
+    const res = await axios.get(url, { method: 'GET' })
+    if (res.status !== expectStatusCode) {
+      console.warn(
+        `[netStat] unable code: in  ${url} return ${res.status} expect ${expectStatusCode}`
+      )
+      console.warn('[netStat] payload: ', payload)
+    }
+  } catch (e) {
+    console.error(`[netStat] ${url} error : ${e}`)
   }
 }
