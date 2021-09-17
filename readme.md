@@ -7,7 +7,7 @@
 
 Options:
   -b, --baseUrlPath [type]  <string> path to root package.json
-  -f, --force [type]        <boolean> if enable - force rewrite previous importmap (default: false)
+  -f, --forceMode [type]        <boolean> if enable - force rewrite previous importmap (default: false)
 
   -x, --prefix [type]       <string> append prefix to path (default: "") for generate in importsmap
 
