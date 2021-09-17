@@ -30,7 +30,7 @@ or
 > npx immg -x ./module/ -f true
 ```
 
-## Locally install
+## Git install
 
 ```shell
 npm i https://github.com/VaskillerDev/immg.git -g
