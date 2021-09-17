@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "npm link",
+    "postinstall": "npm run tsc",
     "start": "node dist/index.js",
     "netstat": "npx tsc && node dist/netstat.js"
   },
@@ -30,7 +30,7 @@
   "license": "MIT",
   "preferGlobal": true,
   "bin": {
-    "immg-build": "npx tsc",
+    "immg-build": "/node_modules/typescript/tsc",
     "immg": "/dist/index.js",
     "immg-netstat": "/dist/netstat.js"
   }
