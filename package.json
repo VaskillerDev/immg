@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "npx tsc",
+    "prepare": "npx tsc",
     "prestart": "npx tsc",
     "start": "node dist/index.js",
     "netstat": "npx tsc && node dist/netstat.js"
