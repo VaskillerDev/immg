@@ -20,6 +20,6 @@
   },
   "exclude": ["node_modules","dist"],
   "files": [
-    "src/**/*.ts"
+    "src"
   ]
 }
