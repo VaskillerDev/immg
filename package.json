@@ -5,16 +5,11 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "preinstall": "npx tsc",
+    "postinstall": "npx tsc",
     "prestart": "npx tsc",
     "start": "node dist/index.js",
     "netstat": "npx tsc && node dist/netstat.js"
   },
-  "files": [
-    "dist",
-    "utils",
-    "types"
-  ],
   "dependencies": {
     "axios": "^0.21.4",
     "commander": "8.1.0"
