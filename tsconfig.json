@@ -19,7 +19,4 @@
     "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules","dist"],
-  "files": [
-    "index.ts"
-  ]
 }
