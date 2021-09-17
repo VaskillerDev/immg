@@ -1,6 +1,6 @@
 ﻿import { dirname, join } from 'path'
 import { existsSync, writeFileSync } from 'fs'
-import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
+import GenerateImportMapsArgs from '../importData/GenerateImportMapsArgs.js'
 
 /**
  * @param args

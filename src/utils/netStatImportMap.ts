@@ -1,8 +1,8 @@
 ﻿import axios from 'axios'
 
-import { Json } from '../types/Json.js'
-import ImportMap from '../types/ImportMap.js'
-import NetStatArgs from '../types/NetStatArgs.js'
+import { Json } from '../importData/Json.js'
+import ImportMap from '../importData/ImportMap.js'
+import NetStatArgs from '../importData/NetStatArgs.js'
 
 /**
  *  URL access checker. Send to module url request and expect code 200

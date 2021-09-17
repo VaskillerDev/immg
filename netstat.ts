@@ -3,8 +3,8 @@ import path from "path";
 import { URL } from 'url'
 import { Command } from 'commander'
 
-import NetStatArgs from './src/types/NetStatArgs.js'
-import ImportMap from './src/types/ImportMap.js'
+import NetStatArgs from './src/importData/NetStatArgs.js'
+import ImportMap from './src/importData/ImportMap.js'
 import netStatImportMap from './src/utils/netStatImportMap.js'
 
 const cli = new Command()

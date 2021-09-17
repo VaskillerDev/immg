@@ -2,7 +2,7 @@
 import path from "path";
 import { Command } from 'commander'
 
-import GenerateImportMapsArgs from './src/types/GenerateImportMapsArgs.js'
+import GenerateImportMapsArgs from './src/importData/GenerateImportMapsArgs.js'
 import generateImportMap from './src/utils/generateImportMap.js'
 import printImportMap from './src/utils/printImportMap.js'
 

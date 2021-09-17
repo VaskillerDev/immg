@@ -1,6 +1,6 @@
-﻿import ImportMap from '../types/ImportMap.js'
-import { PackageNode } from '../types/PackageNode.js'
-import GenerateImportMapsArgs from '../types/GenerateImportMapsArgs.js'
+﻿import ImportMap from '../importData/ImportMap.js'
+import { PackageNode } from '../importData/PackageNode.js'
+import GenerateImportMapsArgs from '../importData/GenerateImportMapsArgs.js'
 
 /**
  *  Generate import map for dependencies
