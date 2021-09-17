@@ -19,7 +19,7 @@ cli
     '<boolean> if enable - force rewrite previous importmap',
     false
   )
-  .option('-x, --prefix [type]', '<string> append prefix to path', '')
+  .option('-x, --prefix [type]', '<string> append prefix to path', './')
   .parse()
 
 /**
