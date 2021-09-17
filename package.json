@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "npm i -D @types/node && npm run build",
     "build": "tsc",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
