@@ -7,12 +7,13 @@
     "declaration": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["node"],
     
     /* Dirs */
     "outDir": "dist/",
     "rootDir": ".",
     "rootDirs": ["src/types/*", "src/utils/*"],
+    
+    "typeRoots": ["/node_modules/@types"],
     
     /* Advanced Options */
     "skipLibCheck": true,
