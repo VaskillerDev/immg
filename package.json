@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepublish" : "npx tsc",
+    "postinstall" : "sleep 5 && npx tsc",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
