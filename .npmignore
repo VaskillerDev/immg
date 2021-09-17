@@ -1,0 +1,7 @@
+﻿# ide
+.idea
+
+# npm
+package-lock.json
+src
+node_modules
