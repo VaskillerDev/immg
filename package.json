@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "tsc": "npx tsc",
     "postinstall": "npm run tsc",
     "start": "node dist/index.js",
     "netstat": "npx tsc && node dist/netstat.js"
