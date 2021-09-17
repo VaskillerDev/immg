@@ -1,7 +1,4 @@
-﻿src
-
+﻿
 #prettier
 .prettierignore
 .prettierrc
-
-*.ts
