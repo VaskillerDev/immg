@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "preinstall": "ls",
     "postinstall": "npx tsc --project immg",
     "prestart": "npx tsc",
     "start": "node dist/index.js",
