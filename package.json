@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "npm i -D @types/node && npm run build",
-    "build": "npm i -D @types/node && tsc",
+    "prepare": "cd immg && npm i -D @types/node && npm run build",
+    "build": "cd immg && npm i -D @types/node && tsc",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
