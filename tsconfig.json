@@ -7,20 +7,16 @@
     "declaration": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-
-    "typeRoots": [
-      "./node_modules/@types/node"
-    ],
+    "types": ["node"],
     
     /* Dirs */
     "outDir": "dist/",
     "rootDir": ".",
     "rootDirs": ["src/types/*", "src/utils/*"],
-    "types": ["node"],
     
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["dist"]
+  "exclude": ["node_modules","dist"]
 }
