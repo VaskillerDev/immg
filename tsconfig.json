@@ -16,7 +16,8 @@
     "outDir": "dist/",
     "rootDir": ".",
     "rootDirs": ["src/types/*", "src/utils/*"],
-
+    "types": ["node"],
+    
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
