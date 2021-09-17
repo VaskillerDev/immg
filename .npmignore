@@ -3,5 +3,5 @@
 
 # npm
 package-lock.json
-src
+dist
 node_modules
