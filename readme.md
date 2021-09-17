@@ -33,10 +33,7 @@ or
 ## Locally install
 
 ```shell
-> git clone https://github.com/VaskillerDev/immg.git
-> cd immg
-> npm i -g .
-> npm link
+npm i https://github.com/VaskillerDev/immg.git -g
 ```
 
 ## Netstat usage:

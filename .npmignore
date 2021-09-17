@@ -1,0 +1,8 @@
+﻿src
+node_modules
+
+#prettier
+.prettierignore
+.prettierrc
+
+*.ts
