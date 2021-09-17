@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare" : "node postinstall.js",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
