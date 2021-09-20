@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "dir > tsc.txt; npm link",
+    "prepare": "dir > tsc.txt; npm link --local",
     "postprepare" : "dir > log.txt",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
