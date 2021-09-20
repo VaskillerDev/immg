@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "postinstall": "cd node_modules/immg && npm ls",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
@@ -27,6 +28,7 @@
   ],
   "author": "Vaskiller",
   "license": "MIT",
+  "preferGlobal": true,
   "bin": {
     "immg": "/dist/index.js",
     "immg-netstat": "/dist/netstat.js"
