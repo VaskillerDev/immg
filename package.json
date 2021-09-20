@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "preprepare": "dir > tsc.txt",
+    "preprepare": "npx tsc",
     "prepare": "dir > log.txt",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
