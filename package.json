@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "compile": "tsc",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
