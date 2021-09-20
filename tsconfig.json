@@ -15,8 +15,6 @@
     "rootDir": ".",
     "rootDirs": ["src/types/*", "src/utils/*"],
     
-    "typeRoots": ["node_modules/@types/node"],
-    
     /* Advanced Options */
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
