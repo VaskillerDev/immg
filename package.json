@@ -1,11 +1,10 @@
 {
   "name": "immg",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "description": "Import maps generator",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "preinstall": "dir > log.txt",
     "prepublishOnly": "(if exist dist rmdir dist /s /q) && npx tsc",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
