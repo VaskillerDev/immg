@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "npm i",
+    "prepare": "cd node_modules/immg && npm ls",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
