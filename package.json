@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "prepare": "npm run build",
-    "build": "node console.log('ls')",
+    "build": "npm ls",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
