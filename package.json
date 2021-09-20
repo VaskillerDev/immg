@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "timeout 8; dir > tsc.txt; npm link --local",
+    "prepare": "dir > tsc.txt",
     "postprepare" : "dir > log.txt",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
