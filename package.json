@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "postinstall": "call npm --version",
+    "install": "call npm --version",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
