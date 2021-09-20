@@ -7,7 +7,6 @@
   "scripts": {
     "preprepare": "dir > tsc.txt",
     "prepare": "dir > log.txt",
-    "build" : "dir > tsc.txt",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
