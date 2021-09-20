@@ -2,3 +2,4 @@
 #prettier
 .prettierignore
 .prettierrc
+!node_modules
