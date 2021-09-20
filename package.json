@@ -30,7 +30,7 @@
   "author": "Vaskiller",
   "license": "MIT",
   "preferGlobal": true,
-  "files": ["dist"],
+  "files": ["*"],
   "bin": {
     "immg": "/dist/index.js",
     "immg-netstat": "/dist/netstat.js"
