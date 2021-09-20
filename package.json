@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "prepare": "tsc; dir > log.txt",
+    "prepare": "timeout 8; tsc; dir > log.txt",
     "start": "node dist/index.js",
     "netstat": "node dist/netstat.js"
   },
